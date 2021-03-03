@@ -1,0 +1,51 @@
+@protocol = http
+@host = localhost
+@port = 32776
+
+
+#帳號
+@username = admin
+@password = 1234
+#@username = react
+#@password = password
+
+
+# @name login
+POST {{protocol}}://{{host}}:{{port}}/token HTTP/1.1
+Content-Type: application/json
+
+{ "username": "{{username}}", "password": "{{password}}" }
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+###
+# Get Ticket paginated listitem.
+GET {{protocol}}://{{host}}:{{port}}/api/Ticket?pagesize=5&page=1&searchText=john
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+# Get TicketId
+@ticketid_search=20
+
+GET {{protocol}}://{{host}}:{{port}}/api/TicketRefSource/ticketid?search={{ticketid_search}}&count=10
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+# Get UserId
+@userid_search=admin
+
+GET {{protocol}}://{{host}}:{{port}}/api/TicketRefSource/userid?search={{userid_search}}&count=10
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+###
+# ticket query by filters
+GET {{protocol}}://{{host}}:{{port}}/api/ticket?pageIndex=0&pageSize=10&searchText=&sortBy=TicketId%20desc&filters=%5B%7B%22name%22%3A%22created%22%2C%22valueType%22%3A%22datetime%22%2C%22operator%22%3A%22BETWEEN%22%2C%22value%22%3A%5B%222021-01-31T16%3A00%3A00.000Z%22%2C%222021-02-08T16%3A00%3A00.000Z%22%5D%7D%2C%7B%22name%22%3A%22category%22%2C%22valueType%22%3A%22string%22%2C%22operator%22%3A%22CONTAINS%22%2C%22value%22%3A%5B%220%22%2C%221%22%5D%7D%2C%7B%22name%22%3A%22source%22%2C%22valueType%22%3A%22string%22%2C%22operator%22%3A%22CONTAINS%22%2C%22value%22%3A%5B%220%22%2C%221%22%5D%7D%2C%7B%22name%22%3A%22status%22%2C%22valueType%22%3A%22int32%22%2C%22operator%22%3A%22CONTAINS%22%2C%22value%22%3A%5B0%2C1%5D%7D%5D
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+

@@ -1,0 +1,40 @@
+@protocol = https
+@host = localhost
+@port = 5001
+
+# 
+GET {{protocol}}://{{host}}:{{port}}/.well-known/openid-configuration HTTP/1.1
+
+###
+# @name login
+POST {{protocol}}://{{host}}:{{port}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=YourCustomAPI
+&client_secret=secret
+&grant_type=client_credentials
+&scope=yourcustomapi api1
+
+###
+@authToken = {{login.response.body.access_token}}
+
+###
+# 顯示 token 內容
+GET https://localhost:5101/identity HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+# 用 token 取得 api
+GET https://localhost:5101/api/values HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+###
+#with basic authentication
+POST {{protocol}}://{{host}}:{{port}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YourCustomAPI:secret
+
+
