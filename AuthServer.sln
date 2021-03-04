@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer", "AuthServer\Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer.Postgresql", "AuthServer.Postgresql\AuthServer.Postgresql.csproj", "{02065723-0518-485E-B4B8-90C6DE29C842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSample", "WebApiSample\WebApiSample.csproj", "{EC4F001E-D9FA-42DB-9AC8-587F2A522502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiSample", "WebApiSample\WebApiSample.csproj", "{EC4F001E-D9FA-42DB-9AC8-587F2A522502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSampleCasbin", "WebApiSampleCasbin\WebApiSampleCasbin.csproj", "{2DE0402B-5351-42E3-9444-83BE4BF19AA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiSampleCasbin", "WebApiSampleCasbin\WebApiSampleCasbin.csproj", "{2DE0402B-5351-42E3-9444-83BE4BF19AA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{54E0106A-D036-41B4-9F85-844F7C792B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2DE0402B-5351-42E3-9444-83BE4BF19AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE0402B-5351-42E3-9444-83BE4BF19AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE0402B-5351-42E3-9444-83BE4BF19AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E0106A-D036-41B4-9F85-844F7C792B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E0106A-D036-41B4-9F85-844F7C792B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E0106A-D036-41B4-9F85-844F7C792B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E0106A-D036-41B4-9F85-844F7C792B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,6 +29,13 @@ namespace AuthServer.Postgresql
                 var context = scope.ServiceProvider
                     .GetRequiredService<ConfigurationDbContext>();
                 context.Database.Migrate();
+
+                context.Clients.RemoveRange(context.Clients);
+                context.ApiScopes.RemoveRange(context.ApiScopes);
+                context.IdentityResources.RemoveRange(context.IdentityResources);
+                context.ApiResources.RemoveRange(context.ApiResources);
+                context.SaveChanges();
+
                 if (!context.Clients.Any())
                 {
                     foreach (var client in Config.GetClients())

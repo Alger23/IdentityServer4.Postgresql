@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,21 @@ namespace WebApiSampleCasbin.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] { "a", "b" };
+            return new[] { "1", "1" };
+        }
+
+        [Authorize("read")]
+        [HttpGet("read")]
+        public IEnumerable<string> GetRead()
+        {
+            return new[] { "read", "read" };
+        }
+
+        [Authorize("manage")]
+        [HttpGet("manage")]
+        public IEnumerable<string> GetManage()
+        {
+            return new[] { "manage1", "manage2" };
         }
     }
 }

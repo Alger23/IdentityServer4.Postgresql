@@ -22,7 +22,14 @@ namespace AuthServer.Postgresql
         {
             return new List<ApiScope>
             {
-                new ApiScope("api1", "WebApiSample")
+                new ApiScope("api1.ticket.read", "WebApiSample"),
+                new ApiScope("api1.ticket.write", "WebApiSample"),
+                new ApiScope("api1.ticket.delete", "WebApiSample"),
+                new ApiScope("api1.ticket.manage", "WebApiSample"),
+                new ApiScope("api2.file.read", "WebApiSampleCasbin"),
+                new ApiScope("api2.file.write", "WebApiSampleCasbin"),
+                new ApiScope("api2.file.delete", "WebApiSampleCasbin"),
+                new ApiScope("api2.file.manage", "WebApiSampleCasbin")
             };
         }
 
@@ -32,6 +39,25 @@ namespace AuthServer.Postgresql
             return new List<ApiResource>
             {
                 new ApiResource("api1", "API sample")
+                {
+                    Scopes =
+                    {
+                        "api1.ticket.read",
+                        "api1.ticket.write",
+                        "api1.ticket.delete",
+                        "api1.ticket.manage"
+                    }
+                },
+                new ApiResource("api2")
+                {
+                    Scopes =
+                    {
+                        "api2.file.read",
+                        "api2.file.write",
+                        "api2.file.delete",
+                        "api2.file.manage"
+                    }
+                }
             };
         }
 
@@ -44,7 +70,7 @@ namespace AuthServer.Postgresql
                 // resource owner password grant client
                 new Client
                 {
-                    ClientId = "YourCustomAPI",
+                    ClientId = "clientApi1",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowOfflineAccess = true,
                     ClientSecrets =
@@ -53,6 +79,25 @@ namespace AuthServer.Postgresql
                     },
                     AllowedScopes = {
                         "api1",
+                        "api1.ticket.read",
+                        StandardScopes.OfflineAccess,
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        },
+                },
+                new Client
+                {
+                    ClientId = "clientApi2",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowOfflineAccess = true,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = {
+                        "api1.ticket.write",
+                        "api2.file.read",
+                        "api2.file.manage",
                         StandardScopes.OfflineAccess,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
