@@ -22,8 +22,7 @@ namespace AuthServer.Postgresql
         {
             return new List<ApiScope>
             {
-                new ApiScope("yourcustomapi"),
-                new ApiScope("api1")
+                new ApiScope("api1", "WebApiSample")
             };
         }
 
@@ -32,7 +31,6 @@ namespace AuthServer.Postgresql
         {
             return new List<ApiResource>
             {
-                new ApiResource("yourcustomapi", "Your Custom API"),
                 new ApiResource("api1", "API sample")
             };
         }
@@ -54,7 +52,6 @@ namespace AuthServer.Postgresql
                         new Secret("secret".Sha256())
                     },
                     AllowedScopes = {
-                        "yourcustomapi",
                         "api1",
                         StandardScopes.OfflineAccess,
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -71,7 +68,6 @@ namespace AuthServer.Postgresql
                         new Secret("secret".Sha256())
                     },
                     AllowedScopes = {
-                        "yourcustomapi",
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         },
